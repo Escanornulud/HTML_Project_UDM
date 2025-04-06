@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College of Education</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('UDM Html BG.jpg') no-repeat fixed center/cover;
+            margin: 0;
+            padding: 0;
+            color: black;
+            font-size: 25px;
+            line-height: 1.6;
+        }
+        .navbar {
+            background-color: rgba(34, 139, 34, 0.9);
+            position: fixed;
+            top: 0;
+            width: 98%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 999;
+        }
+        .navbar img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+        .navbar .school-name {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            flex-grow: 1;
+            text-align: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .navbar a:hover {
+            background-color: gold;
+            border-radius: 5px;
+        }
+        .section {
+            padding: 100px 40px;
+            text-align: center;
+            background-color: rgba(255, 255, 204, 0.85);
+            margin: 200px auto;
+            border-radius: 10px;
+            width: 80%;
+        }
+        .section h1 {
+            background-color: #228B22;
+            color: #FFD700;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .core-values p {
+            text-align: left;
+            width: 60%;
+            font-size: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            margin: auto;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .core-values p:hover {
+            background-color: #f1f8e9;
+        }
+        .core-values-content {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 22px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .core-values-content.show {
+            display: block;
+        }
+        .letter-section span {
+            font-weight: bold;
+            color: #1b5e20;
+            font-size: 26px;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .course-item {
+            cursor: pointer;
+            color: #1b5e20;
+            font-weight: bold;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            transition: 0.3s;
+        }
+        .course-item:hover {
+            background-color: #2e7d32;
+            color: gold;
+        }
+        .course-description {
+            display: none;
+            text-align: justify;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            padding: 40px 20px;
+            font-size: 16px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px 20px;
+        }
+
+        .footer-section h3 {
+            border-bottom: 1px solid gold;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin: 5px 0;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            min-width: 150px;
+            padding: 10px;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 8px;
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .dropdown a:hover {
+            background-color: #f0f0f0;
+            color: #1b5e20;
+        }
+    </style>
+
+    <script>
+        function toggleDescription(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === "none" || el.style.display === "") ? "block" : "none";
+        }
+
+        function toggleCoreValues() {
+            document.getElementById("coreValuesContent").classList.toggle("show");
+        }
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById("settingsDropdown");
+            dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(e) {
+            if (!e.target.matches('#settingsBtn')) {
+                var dropdown = document.getElementById("settingsDropdown");
+                if (dropdown.style.display === "block") {
+                    dropdown.style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="navbar">
+        <img src="CEDLogo.png" alt="College Logo">
+        <span class="school-name">Universidad De Manila</span>
+        <a href="#home">Home</a>
+        <a href="#orgchart">Organizational Chart</a>
+        <a href="#vision">Vision</a>
+        <a href="#mission">Mission</a>
+        <a href="#corevalues">Core Values</a>
+        <a href="#courses">Course Offers</a>
+        <a href="#activities">Activities</a>
+        <a href="history.html">History</a>
+        <a href="#" onclick="toggleDropdown()" id="settingsBtn">Settings</a>
+        <div class="dropdown" id="settingsDropdown">
+            <a href="About.Html">About</a>
+            <a href="https://udmwebsite.udm.edu.ph/wp-content/uploads/2024/01/UDM-Student-Manual.pdf">Help</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">NO DO NOT PRESS ME!</a>
+        </div>
+    </div>
+
+    <div id="home" class="section">
+        <h1>Welcome to the College of Education</h1>
+        <p><i>Empowering future educators with knowledge and values.</i></p>
+        <h2>College Overview</h2>
+        <p>The Bachelor in Secondary Education is an extensive four-year undergraduate degree program and board course meticulously designed to cultivate and equip future educators and mentors with the necessary skills and knowledge to excel in teaching at the secondary level, encompassing both junior and senior high school in the basic education spectrum. This comprehensive program offers students the opportunity to specialize in one of four distinct majors, allowing them to tailor their education to their specific career aspirations and interests.</p>
+    </div>
+
+    <div id="orgchart" class="section">
+        <h1>Organizational Chart</h1>
+        <img src="OrgChart.jpg" alt="Organizational Chart" height="800" width="800">
+    </div>
+
+    <div id="vision" class="section">
+        <h1>Vision</h1>
+        <p>A locally-rooted yet globally competitive college with a bold vision to become a true Center of Excellence in Teacher Education, dedicated to nurturing visionary and ethical professionals who excel in an inclusive and diverse learning environment.</p>
+        <img src="vision.png" alt="eye">
+    </div>
+
+    <div id="mission" class="section">
+        <h1>Mission</h1>
+        <p>To cultivate a lifelong, gender-sensitive environment that champions quality education of the highest standard, benefiting the city, country and global community.</p>
+        <img src="Uflifting lives.png" alt="Uplifting lives through quality education">
+    </div>
+
+    <div id="corevalues" class="section core-values">
+        <h1>Core Values</h1>
+        <p onclick="toggleCoreValues()">
+            <b>E</b> – Empowered<br>
+            <b>D</b> – Diverse and Globally Competitive<br>
+            <b>U</b> – Upholding Ethical and Moral Standards<br>
+            <b>C</b> – Committed to Unwavering Excellence<br>
+            <b>A</b> – Adaptive and Resilient<br>
+            <b>R</b> – Rigorously Research and Extension-Driven<br>
+            <b>E</b> – Education Rooted in Compassion
+        </p>
+        <div id="coreValuesContent" class="core-values-content">
+            <p><Strong>At the College of Education, we EDUcate, we CARE.</strong></p>
+            <div class="letter-section"><span>E – Empowered:</span> The College fosters an environment where individuals are encouraged and equipped to take charge of their education and personal development, empowering them to reach their full potential.</div>
+            <div class="letter-section"><span>D – Diverse and Globally Competitive:</span> The College embraces diversity in all its forms, promoting inclusivity and preparing students to thrive in a competitive global landscape. It values different perspectives and experiences as a source of strength.</div>
+            <div class="letter-section"><span>U – Upholding Ethical and Moral Standards:</span> Ethical and moral principles are at the core of the College’s values. It instills a strong sense of integrity, honesty, and responsibility in its students, preparing them to be ethical leaders and citizens.</div>
+            <div class="letter-section"><span>C – Committed to Unwavering Excellence:</span> The College is unwavering in its pursuit of excellence in all aspects of education. It sets high standards for itself and its students, fostering a culture of continuous improvement and achievement.</div>
+            <div class="letter-section"><span>A – Adaptive and Resilient:</span> In an ever-changing world, adaptability and resilience are key. The College equips its students with the skills and mindset to navigate challenges, learn from setbacks, and emerge stronger and more capable.</div>
+            <div class="letter-section"><span>R – Rigorously Research and Extension-Driven:</span> Research and extension activities are integral to the College’s mission. It encourages a culture of inquiry and innovation, promoting research that contributes to knowledge and extension efforts that benefit the community.</div>
+            <div class="letter-section"><span>E – Education Rooted in Compassion:</span> The College recognizes the importance of empathy and compassion in education. It emphasizes the development of not only academic knowledge but also a deep understanding of human values and the well-being of others.</div>
+        </div>
+    </div>
+
+    <div id="courses" class="section">
+        <h1>Course Offers</h1>
+        <div class="course-item" onclick="toggleDescription('math')">Bachelor of Secondary Education major in Mathematics</div>
+        <div id="math" class="course-description">This comprehensive four-year undergraduate degree program is meticulously crafted to prepare Pre-Service Teachers for the dynamic field of Mathematics education within the context of Basic Education, with a primary focus on Secondary schools. The curriculum is thoughtfully structured to equip graduates with a deep understanding of the diverse interests and capabilities of students across various levels of Mathematical proficiency.This comprehensive four-year undergraduate degree program is meticulously crafted to prepare Pre-Service Teachers for the dynamic field of Mathematics education within the context of Basic Education, with a primary focus on Secondary schools. The curriculum is thoughtfully structured to equip graduates with a deep understanding of the diverse interests and capabilities of students across various levels of Mathematical proficiency.<br><br>At its core, the program places a strong emphasis on cultivating problem-solving acumen, fostering a robust mathematical thinking process, and honing the art of actively engaging children and young adults through technology-infused teaching methods. By merging cutting-edge pedagogy with technological innovation, this program ensures that its Mathematics graduates emerge not only as adept educators but as facilitators of 21st-century skills, thus enabling them to excel as competitive and forward-thinking Mathematics teachers in today’s ever-evolving educational landscape.</div>
+
+        <div class="course-item" onclick="toggleDescription('english')">Bachelor of Secondary Education major in English</div>
+        <div id="english" class="course-description">The specialization in English Education stands as a meticulously structured four-year undergraduate degree program that places a profound emphasis on cultivating not only the mastery of English language and literacy but also the essential social, intellectual, and discursive skills vital for graduates to thrive in an ever-expanding global landscape. This program is designed to ensure that its graduates not only keep pace but also excel in the fast-evolving digital age.<br><br>Within this program, the courses are thoughtfully crafted to establish strong connections between the advanced English language proficiencies required by the Basic Education Curriculum, particularly in the realm of Secondary Education, and the nuanced literacies essential for success in the 21st century. The English Education curriculum is laser-focused on preparing Pre-Service Teachers to engage secondary students in the intricate art of producing and interpreting a wide array of texts, encompassing both written and spoken English, while fostering critical thinking and analytical skills.<br><br>In essence, the English Education program is a launchpad for educators who are not just fluent in English but are also equipped to guide their students in navigating the complexities of literacy and non-literacy, ensuring that they are well-prepared to thrive in our modern, interconnected world.</div>
+
+        <div class="course-item" onclick="toggleDescription('social')">Bachelor of Secondary Education major in Social Studies</div>
+        <div id="social" class="course-description">This rigorous four-year undergraduate professional preparation program in Social Studies is meticulously designed to shape Pre-Service Teachers into adept educators, equipped with the essential skills needed to nurture an enlightened and engaged citizenry within our diverse yet inclusive society. The program places a strong emphasis on fostering critical thinking abilities concerning Social Studies curriculum frameworks and materials. Moreover, it imparts the art of curriculum development deeply rooted in empirical research, ensuring that future educators are well-versed in evidence-based instructional practices.<br><br>In addition, this program also places a premium on developing sensitivity and adeptness in handling potentially contentious topics within the realm of Social Studies, including but not limited to history, culture, race relations, gender issues, war, peace, economic equality, social opportunities, and global interdependence. By honing these critical competencies, the program prepares teachers to navigate the intricacies and complexities of 21st-century classrooms, arming them with the tools to effectively address contemporary challenges while reaping the rewards of fostering well-informed and socially responsible citizens.</div>
+
+        <div class="course-item" onclick="toggleDescription('science')">Bachelor of Secondary Education major in General Science</div>
+        <div id="science" class="course-description">This comprehensive four-year undergraduate degree program serves as the cornerstone for aspiring Basic Education Science Teachers, with a specific focus on the secondary school level. It equips students with the requisite knowledge and skills to embark on a fulfilling career in science education.<br><br>Within this program, aspiring high school science educators undergo a meticulously curated curriculum that encompasses a series of education courses tailored for the secondary level. This includes essential professional subjects that provide a strong pedagogical foundation. In their senior year, students culminate their educational journey through a rigorous series of student teaching experiences, putting their theoretical knowledge into practical application.<br><br>What sets this program apart is its unwavering commitment to cutting-edge educational practices. Science teachers are not merely instructors; they are facilitators of learning, utilizing technology and research-oriented curriculum to engage and inspire their students. This approach empowers students to embark on a journey of discovery, enabling them to acquire new knowledge, critical thinking skills, and a deep appreciation for the wonders of science. Moreover, this program is designed to prepare teachers to thrive in diverse and inclusive classroom environments, ensuring that they are well-equipped to nurture the potential of every student they encounter.</div>
+
+        <div class="course-item" onclick="toggleDescription('pe')">Bachelor of Physical Education</div>
+        <div id="pe" class="course-description">The Bachelor of Physical Education (BPEd) program is a comprehensive undergraduate degree course meticulously crafted to equip Pre-Service Teachers with the knowledge and skills necessary for the multifaceted role of teaching music, arts, physical education, and health within the school curriculum. Beyond traditional classroom instruction, this program is designed to foster a lifelong appreciation for physical activity, offering a diverse array of recreational activities, organized sports, and competitive pursuits.<br><br>At its core, BPEd seeks to create equal opportunities for students to develop healthy physical activity habits while honing their teaching abilities. This program serves as a gateway to explore various facets of the sports and physical education landscape, including coaching, program development, and sports administration. It achieves this by providing a well-rounded, quality education that thrives in a dynamic, community-centered, and research-oriented environment.<br><br>In essence, the Bachelor of Physical Education program not only shapes educators but also empowers them to inspire future generations to lead active and healthy lives, fostering a holistic approach to physical well-being and education within the school setting.</div>
+    </div>
+
+    <div id="activities" class="section">
+        <h1>Activities</h1>
+		<a href="https://udmwebsite.udm.edu.ph/events/" style="margin-left: 10px;">Activities Page</a>
+        <p>Coming soon...</p>
+        
+        <p>Coming soon...</p><p>Coming soon...</p><p>Coming soon...</p>
+        <p>Coming soon...</p><p>Coming soon...</p><p>Coming soon...</p>
+        <p>Coming soon...</p><p>Coming soon...</p><p>Coming soon...</p>
+        <p>Coming soon...</p><p>Coming soon...</p><p>Coming soon...</p>
+    </div>
+	<div>
+	<footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Universidad De Manila</h3>
+      <p>College of Education<br>Empowering Future Educators</p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#corevalues">Core Values</a></li>
+        <li><a href="#activities">Activities</a>
+		<li><a href="#history">History</a>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p>Email: registrarsoffice@udm.edu.ph</p>
+      <p>Phone: (02) 1234-5678</p>
+      <div class="social-icons">
+        <a href="https://udmwebsite.udm.edu.ph/college-of-education/">🌐</a>
+        <a href="https://www.facebook.com/UdM.Merlions">📘</a>
+        <a href="https://www.youtube.com/@UDM1995/videos">🐦</a>
+		<a href="https://www.google.com/maps/place/Cecilia+Muñoz+St,+Ermita,+Manila,+1000+Metro+Manila,+Philippines/@14.591767,120.981421,13z/data=!4m6!3m5!1s0x3397ca18c62517eb:0x5b17821f4eb1e5ae!8m2!3d14.5914805!4d120.9812818!16s%2Fg%2F1tjdj8rk?hl=en-US&entry=ttu&g_ep=EgoyMDI1MDQwMi4xIKXMDSoASAFQAw%3D%3D">🗺️</a>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:20px;">&copy; 2025 Universidad De Manila - College of Education. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>
