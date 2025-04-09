@@ -204,6 +204,39 @@
             background-color: #f0f0f0;
             color: #1b5e20;
         }
+
+	.dark-mode {
+    		color: white !important;
+    		background-color: black !important;
+	}
+
+	.dark-mode .section,
+	.dark-mode .core-values p,
+	.dark-mode .core-values-content,
+	.dark-mode .course-item,
+	.dark-mode .course-description {
+   		background-color: black !important;
+    		color: white !important;
+	}
+	
+	.dark-mode .navbar,
+	.dark-mode footer {
+	    background-color: #111 !important;
+	}
+	
+	.dark-mode .navbar .school-name,
+	.dark-mode .navbar a,
+	.dark-mode .footer-section,
+	.dark-mode .footer-section h3,
+	.dark-mode .footer-section ul li a {
+	    color: white !important;
+	}
+	
+	.dark-mode .dropdown {
+	    background-color: #222 !important;
+	    color: white !important;
+	}
+
     </style>
 
     <script>
@@ -221,7 +254,7 @@
             dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
         }
 
-        // Close dropdown when clicking outside
+        
         window.onclick = function(e) {
             if (!e.target.matches('#settingsBtn')) {
                 var dropdown = document.getElementById("settingsDropdown");
@@ -230,6 +263,10 @@
                 }
             }
         }
+	function toggleDarkMode() {
+    	     document.body.classList.toggle('dark-mode');
+	}
+
     </script>
 </head>
 <body>
@@ -247,6 +284,7 @@
         <a href="history.html">History</a>
         <a href="#" onclick="toggleDropdown()" id="settingsBtn">Settings</a>
         <div class="dropdown" id="settingsDropdown">
+	    <a href="#" onclick="toggleDarkMode()">Toggle Dark Mode</a>
             <a href="About.Html">About</a>
             <a href="https://udmwebsite.udm.edu.ph/wp-content/uploads/2024/01/UDM-Student-Manual.pdf">Help</a>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">NO DO NOT PRESS ME!</a>
