@@ -236,6 +236,10 @@
 	    background-color: #222 !important;
 	    color: white !important;
 	}
+	
+	.dark-mode img.white-in-dark {
+		filter: brightness(0 ) invert(1);
+    }
 
     </style>
 
@@ -284,7 +288,7 @@
         <a href="history.html">History</a>
         <a href="#" onclick="toggleDropdown()" id="settingsBtn">Settings</a>
         <div class="dropdown" id="settingsDropdown">
-	    <a href="#" onclick="toggleDarkMode()">Toggle Dark Mode</a>
+			<a href="#" onclick="toggleDarkMode()">Toggle Dark Mode</a>
             <a href="About.Html">About</a>
             <a href="https://udmwebsite.udm.edu.ph/wp-content/uploads/2024/01/UDM-Student-Manual.pdf">Help</a>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">NO DO NOT PRESS ME!</a>
@@ -312,7 +316,7 @@
     <div id="mission" class="section">
         <h1>Mission</h1>
         <p>To cultivate a lifelong, gender-sensitive environment that champions quality education of the highest standard, benefiting the city, country and global community.</p>
-        <img src="Uflifting lives.png" alt="Uplifting lives through quality education">
+        <img src="Uflifting lives.png" class="white-in-dark" alt="Uplifting lives through quality education">
     </div>
 
     <div id="corevalues" class="section core-values">
