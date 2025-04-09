@@ -14,4 +14,6 @@ Happy readings
 
 
 <h4>MIKON~</h4>
-![mikon](https://github.com/user-attachments/assets/fb749312-c2bc-486d-9434-b1cbcbd52f81)
+
+![mikon](https://github.com/user-attachments/assets/454cea3f-cfbd-45f9-9979-171d2b09ec25)
+
